@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method ="GET">
+        <input type="text" name="search" placeholder="search product name..."
+        value="{{ request.GET.search }}">
+        <button type="submit">search</button>
+        <a href="{% url 'display' %}"></a>
+    </form>
+    <table border="2">
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Image</th>
+        </tr>
+        {% for i in photos %}
+        <tr>
+            <td>{{ i.name }}</td>
+            <td>{{ i.price }}</td>
+            <td>{{ i.quantity }}</td>
+            <td><img src="{{ i.img.url }}" height="100" width="100"></td>
+            <td><a href="{% url 'update' i.id %}">update</a></td>
+            <td><a href="{% url 'delete' i.id %}">delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{% url 'insert' %}"> Do you want to insert a new records?????</a>
+</body>
+</html>
